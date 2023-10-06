@@ -7,7 +7,7 @@ setup(
     author_email="eduardo.g.amaral1997@gmail.com",
     description="Calculates a Fibonacci number",
     install_requires=[],
-    packages=find_packages(exclude=("tests",)),
+    packages=find_packages(exclude=("tests", "begin")),
     python_requires='>=3',
     tests_require=['pytest'],
 )
