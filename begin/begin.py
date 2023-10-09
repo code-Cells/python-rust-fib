@@ -16,8 +16,3 @@ with open("../setup.py", "w") as f:
     f.write("    tests_require=[\"pytest\"],\n")
     f.write(")\n")
 
-with open("./info.json", "w") as f:
-    f.write("{\n")
-    f.write(f"  \"name\": \"{name}\",\n")
-    f.write("}\n")
-
