@@ -13,7 +13,7 @@ setup(
     entry_points={
         'console_scripts': [
         'fib-number = \
-        flitton_fib_py.cmd.fib_numb:fib_numb',
+        fib_py.cmd.fib_numb:fib_numb',
         ],
     },
 )
