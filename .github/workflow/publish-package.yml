@@ -1,0 +1,33 @@
+name: Publish Python distributions to PyPI
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+jobs:
+  run-shell-command:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        python3 -m pip3 install --upgrade pip3
+        pip3 install -r requirements.txt
+    - name: update version
+      run: python3 get_latest_version.py
+    - name: install deployment dependancies
+      if: github.event.pull_request.merged == true
+      run: |
+        pip3 install twine
+        pip3 install pexpect
+    - name: package module
+      if: github.event.pull_request.merged == true
+      run: python3 setup.py sdist
+    - name: deploy to pypi
+      if: github.event.pull_request.merged == true
+      env:
+        TWINE_USERNAME: "__token__"
+        TWINE_PASSWORD: ${{ secrets.TWINE_TOKEN }}
+        run: |
+          twine upload dist/*
+
